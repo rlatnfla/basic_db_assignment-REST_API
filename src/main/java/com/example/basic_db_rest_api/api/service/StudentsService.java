@@ -12,7 +12,7 @@ public class StudentsService {
 
     private final StudentsDataAccessor studentsDataAccessor;
 
-    private final static String NO_SUCH_STUDENT_MESSAGE = "No such student";
+    private static final String NO_SUCH_STUDENT_MESSAGE = "No such student";
 
     public String getDegreeByName(String name) {
 
@@ -46,5 +46,16 @@ public class StudentsService {
         Long count = studentsDataAccessor.countAllByDegree(degree);
 
         return degree + " : " + count;
+    }
+
+    public String putStudents(String name, String email, int graduation) {
+        Long count = studentsDataAccessor.countAllByNameAndEmail(name, email);
+
+        if (count > 0) {
+            return "Already registered";
+        } else {
+            studentsDataAccessor.insertStudent(name, email, graduation);
+            return "Registration successful";
+        }
     }
 }

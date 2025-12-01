@@ -44,5 +44,27 @@ public class StudentsDataAccessor {
         return jdbcTemplate.queryForObject(query, Long.class, degree);
     }
 
+    public Long countAllByNameAndEmail(String name, String email) {
+
+        String query = """
+            SELECT count(*)
+            FROM students s
+            WHERE s.name = ? AND s.email = ?
+            """;
+
+        return jdbcTemplate.queryForObject(query, Long.class, name, email);
+    }
+
+    public void insertStudent(String name, String email, int graduation) {
+
+        String query = """
+            INSERT INTO students(name, email, graduation)
+            VALUES (?, ?, ?)
+            """;
+
+        jdbcTemplate.update(query, name, email, graduation);
+
+    }
+
 
 }
