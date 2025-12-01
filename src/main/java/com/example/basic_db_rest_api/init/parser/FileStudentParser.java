@@ -38,7 +38,11 @@ public class FileStudentParser implements StudentParser {
             for (Element h2 : h2Tags) {
                 String degree = h2.text();
 
-                Elements studentTable = h2.nextElementSiblings();
+                Element studentTable = h2.nextElementSibling();
+
+                if (studentTable == null || !studentTable.tagName().equalsIgnoreCase("table")) {
+                    continue;
+                }
 
                 Elements studentRows = studentTable.select("tr:gt(0)");
 
