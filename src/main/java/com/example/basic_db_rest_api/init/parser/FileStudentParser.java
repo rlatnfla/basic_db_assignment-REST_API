@@ -11,16 +11,14 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
 public class FileStudentParser implements StudentParser {
 
-    private final static String path = "static/hongik_dbms_table.html";
+    private static final String FILE_PATH = "static/hongik_dbms_table.html";
     private File getHtmlFile() throws IOException {
 
-        ClassPathResource resource = new ClassPathResource(path);
+        ClassPathResource resource = new ClassPathResource(FILE_PATH);
         return resource.getFile();
     }
 
